@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css">
+        <link rel="stylesheet" href="css/MarkerCluster.css">
+        <link rel="stylesheet" href="css/MarkerCluster.Default.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet.markercluster.js"></script>
+        <script src="data/Crime_Incidents_In_2016_0.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[38.7665156332,-77.1187352556],[39.0401515753,-76.9049322453]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.addAttribution('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a>');
+        var bounds_group = new L.featureGroup([]);
+        var basemap0 = L.tileLayer('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+            maxZoom: 28
+        });
+        basemap0.addTo(map);
+        function setBounds() {
+        }
+        function pop_Crime_Incidents_In_2016_0(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? Autolinker.link(String(feature.properties['OBJECTID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CCN'] !== null ? Autolinker.link(String(feature.properties['CCN'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['REPORTDATE'] !== null ? Autolinker.link(String(feature.properties['REPORTDATE'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SHIFT'] !== null ? Autolinker.link(String(feature.properties['SHIFT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OFFENSE'] !== null ? Autolinker.link(String(feature.properties['OFFENSE'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['METHOD'] !== null ? Autolinker.link(String(feature.properties['METHOD'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LASTMODIFI'] !== null ? Autolinker.link(String(feature.properties['LASTMODIFI'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['BLOCKSITEA'] !== null ? Autolinker.link(String(feature.properties['BLOCKSITEA'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['BLOCKXCOOR'] !== null ? Autolinker.link(String(feature.properties['BLOCKXCOOR'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['BLOCKYCOOR'] !== null ? Autolinker.link(String(feature.properties['BLOCKYCOOR'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WARD'] !== null ? Autolinker.link(String(feature.properties['WARD'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ANC'] !== null ? Autolinker.link(String(feature.properties['ANC'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DISTRICT'] !== null ? Autolinker.link(String(feature.properties['DISTRICT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PSA'] !== null ? Autolinker.link(String(feature.properties['PSA'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NEIGHBORHO'] !== null ? Autolinker.link(String(feature.properties['NEIGHBORHO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['BUSINESSIM'] !== null ? Autolinker.link(String(feature.properties['BUSINESSIM'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['BLOCK_GROU'] !== null ? Autolinker.link(String(feature.properties['BLOCK_GROU'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CENSUS_TRA'] !== null ? Autolinker.link(String(feature.properties['CENSUS_TRA'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['VOTING_PRE'] !== null ? Autolinker.link(String(feature.properties['VOTING_PRE'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['START_DATE'] !== null ? Autolinker.link(String(feature.properties['START_DATE'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['END_DATE'] !== null ? Autolinker.link(String(feature.properties['END_DATE'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Crime_Incidents_In_2016_0_0() {
+            return {
+                pane: 'pane_Crime_Incidents_In_2016_0',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(7,138,231,1.0)',
+            }
+        }
+        map.createPane('pane_Crime_Incidents_In_2016_0');
+        map.getPane('pane_Crime_Incidents_In_2016_0').style.zIndex = 400;
+        map.getPane('pane_Crime_Incidents_In_2016_0').style['mix-blend-mode'] = 'normal';
+        var layer_Crime_Incidents_In_2016_0 = new L.geoJson(json_Crime_Incidents_In_2016_0, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Crime_Incidents_In_2016_0',
+            onEachFeature: pop_Crime_Incidents_In_2016_0,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Crime_Incidents_In_2016_0_0(feature));
+            },
+        });
+        var cluster_Crime_Incidents_In_2016_0 = new L.MarkerClusterGroup({showCoverageOnHover: false,
+            spiderfyDistanceMultiplier: 2});
+        cluster_Crime_Incidents_In_2016_0.addLayer(layer_Crime_Incidents_In_2016_0);
+
+        bounds_group.addLayer(layer_Crime_Incidents_In_2016_0);
+        cluster_Crime_Incidents_In_2016_0.addTo(map);
+        setBounds();
+        </script>
+    </body>
+</html>
